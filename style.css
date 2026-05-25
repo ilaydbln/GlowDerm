@@ -1,0 +1,339 @@
+/* Genel Ayarlar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  
+  background-image:url('gorsel.JPG') !important;
+  background-size: cover;
+  background-position:right center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin:0;
+  padding:0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 🔝 NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 30px 60px; 
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+ 
+.logo img {
+  /* Enini makul bir seviyeye çekiyoruz */
+  width: 100px; 
+  
+  /* Boyunu belirgin şekilde büyütüyoruz */
+  height: 150px; 
+  
+  /* Görselin bozulmasını (basık durmasını) önlemek için mutlaka kalsın */
+  object-fit: contain; 
+  
+  /* Arka planla kaynaşması için (beyazlığı gizler) */
+  mix-blend-mode: multiply; 
+  
+  /* Biraz daha yukarı çekmek istersen */
+  margin-top: -20px; 
+  
+  transition: all 0.3s ease;
+}
+ 
+/* Navbardaki logo kapsayıcısını da buna göre daraltalım */
+.logo {
+  display: flex;
+  align-items: center;
+   gap: 10px;
+  width: auto; /* Genişliği içeriğe göre ayarla */
+}
+.logo span {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  /* Şeffaf Dikdörtgen Stil */
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1); /* Hafif beyaz şeffaflık */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* İnce kenarlık */
+  backdrop-filter: blur(8px); /* Cam efekti */
+  border-radius: 4px; /* Keskin ama zarif köşeler */
+  
+  transition: all 0.3s ease;
+}
+
+.menu li a:hover {
+  opacity: 0.7;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+/* 🌟 HERO ALANI */
+.hero {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  padding-left: 10%;
+  background:transparent;
+  padding-left: 10%;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 550px; /* Yazıların çok sağa yayılmasını engeller, blok gibi durur */
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; 
+  font-size: 62px; 
+  line-height: 1.1;
+
+  /* NOURISH RENGİ: Hafif kremsi, fildişi beyazı */
+  color: #F4F1ED; 
+  
+  /* Görseldeki o ferahlığı yakalamak için harf arasını hafif açıyoruz */
+  letter-spacing: 1.2px;
+  
+  margin-bottom: 25px;
+  text-transform: capitalize;
+  max-width: 550px;
+
+  /* Yazının görsel üzerinde daha 'estetik' durması için çok hafif yumuşatma */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 
+.hero-content p {
+  /* Diğer ayarlar aynı kalabilir... */
+  font-size: 15px; 
+  max-width: 450px;
+  line-height: 1.6;
+  
+  /* 🎨 RENK: Daha az görünür, daha çok arka plana karışan bir beyaz/bej */
+  color: rgba(244, 241, 237, 0.6); /* Başlığın renginin %60 şeffaflığı */
+  
+  /* ⚖️ KALINLIK: Daha ince (Light veya Thin) */
+  font-weight: 300; /* Veya Montserrat'ın en ince halini (100, 200) kullan */
+  
+  /* Harf aralarını biraz açalım, lüks durur */
+  letter-spacing: 0.5px;
+ 
+  
+  /* ⬇️ BUTONU AŞAĞI İTMEK İÇİN BU DEĞERİ ARTIRALIM ⬇️ */
+  margin-bottom: 60px; /* Eski değer muhtemelen 30-35px idi, iki katına çıkardık */
+}  
+/* 🌟 BUTON TASARIMI (GÜNCELLENDİ) */
+.btn-shop {
+  /* 1. Şekil: Oval olması için border-radius'u yüksek tutuyoruz */
+  padding: 18px 50px; /* Tok bir görünüm için iç boşlukları artırdık */
+  border-radius: 50px; /* Bu değer tam oval yapar */
+  
+  /* 2. Renkler: Arka plan koyu, yazılar beyazımsı */
+  background-color: #2c2c2c; /* Tam siyah yerine çok koyu, lüks bir gri */
+  color: #fffaf0; /* Tam beyaz yerine hafif kremsi, yumuşak bir beyaz */
+  
+  /* 3. Yazı Kalınlığı ve Şekli: "Nourish" yazısı gibi kalın */
+  font-family: 'Montserrat', sans-serif; /* Montserrat'ın bold'u bu iş için iyidir */
+  font-weight: 700; /* İşte aradığımız o kalınlık (bold) */
+  text-transform: uppercase; /* Tüm harfleri büyük yap */
+  font-size: 14px; /* Çok büyük olmasın, zarif kalsın */
+  letter-spacing: 2px; /* Harf aralarını açmak 'high-end' bir hava katar */
+  
+  /* 4. Ekstra Detaylar */
+  border: none; /* Çerçeveyi kaldırıyoruz */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Hafif ve yumuşak bir gölge */
+  
+  /* Butonu dikeyde ortalamak gerekirse ekleyebiliriz (opsiyonel) */
+  display: inline-block;
+}
+
+/* 🌟 BUTON ÜZERİNE GELİNDİĞİNDE (HOVER EFFECT) */
+.btn-shop:hover {
+  background-color: #1a1a1a; /* Biraz daha koyulaşsın */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Gölge biraz belirginleşsin */
+  transform: translateY(-2px); /* Çok hafif yukarı kaysın, interaktif bir his verir */
+}
+ 
+
+/* Giriş / kayıt sayfaları */
+body.auth-page {
+  min-height: 100vh;
+}
+
+.auth-card-wrap {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 60px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.auth-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.auth-lead {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.auth-form label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.55);
+  margin: 14px 0 6px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-errors,
+.field-error {
+  font-size: 13px;
+  color: #b00020;
+  margin-top: 8px;
+}
+
+.auth-switch {
+  margin-top: 22px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #111;
+  font-weight: 600;
+}
+
+.hero-auth {
+  margin-top: 28px;
+}
+
+.hero-auth-hint {
+  font-size: 14px;
+  margin-bottom: 18px;
+  opacity: 0.9;
+}
+
+.hero-auth-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn-outline {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: none !important;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.menu .auth-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu .auth-user {
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.9;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding-left: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+  }
+  .hero-content h1 {
+    font-size: 40px;
+  }
+  .menu {
+      display: none; /* Mobilde menü gizlenebilir veya burger menü yapılabilir */
+  }
+}  

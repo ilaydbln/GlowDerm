@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Senin Cilt Rutinin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100svh;
+            font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+            background-image: url("rutin.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #f8f8f8;
+            text-align: center;
+            position: relative;
+            padding: 190px 20px 60px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                145deg,
+                rgba(28, 16, 14, 0.82),
+                rgba(55, 32, 28, 0.62) 45%,
+                rgba(72, 44, 40, 0.55)
+            );
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        h1 {
+            margin: 20px 0 30px;
+            font-size: clamp(28px, 5vw, 44px);
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+            gap: 24px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 150px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            margin-top: -20px;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: auto;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .menu li a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .menu li a:hover {
+            opacity: 0.7;
+        }
+
+        #routine-container {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+            justify-content: center;
+            gap: 22px;
+            padding: 10px 0;
+        }
+
+        .card {
+            width: 100%;
+            min-width: 0;
+            border-radius: 18px;
+            padding: 20px 16px 18px;
+            background: linear-gradient(
+                165deg,
+                rgba(255, 255, 255, 0.92),
+                rgba(245, 248, 255, 0.83)
+            );
+            border: 1px solid rgba(255, 255, 255, 0.48);
+            box-shadow: 0 20px 45px rgba(7, 12, 24, 0.35);
+            color: #151515;
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 26px 55px rgba(7, 12, 24, 0.46);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 8px 14px rgba(18, 22, 35, 0.22));
+        }
+
+        .card h3 {
+            margin: 8px 0 6px;
+            font-size: 16px;
+            color: #7d5a1a;
+            letter-spacing: 0.4px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card small {
+            display: block;
+            margin-top: 8px;
+            color: rgba(0, 0, 0, 0.62);
+            font-size: 12px;
+        }
+
+        .btn {
+            margin-top: 28px;
+            display: inline-block;
+            padding: 12px 26px;
+            text-decoration: none;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            background: linear-gradient(135deg, #f7e7b0, #d7b35b);
+            color: #1e1e1e;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 38px rgba(0, 0, 0, 0.34);
+        }
+
+        @media (max-width: 1040px) {
+            body {
+                padding-top: 170px;
+            }
+
+            .navbar {
+                padding: 24px 32px;
+            }
+
+            .menu {
+                gap: 12px;
+            }
+
+            .menu li a {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 108px 16px 44px;
+                background-attachment: scroll;
+            }
+
+            .navbar {
+                padding: 14px 16px;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            .logo img {
+                width: 76px;
+                height: 108px;
+                margin-top: -12px;
+            }
+
+            #routine-container {
+                grid-template-columns: minmax(0, 320px);
+                gap: 18px;
+            }
+
+            .card {
+                width: 100%;
+                padding: 18px 16px;
+            }
+
+            .btn {
+                width: min(100%, 320px);
+                padding-inline: 18px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            body {
+                padding-inline: 12px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .card img {
+                width: 88px;
+                height: 88px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo.png" alt="GlowDerm logo">
+    </div>
+    <ul class="menu">
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="rutin.html">Rutin</a></li>
+        <li><a href="favoriler.html">Favoriler</a></li>
+        <li><a href="products.html">Ürünler</a></li>
+    </ul>
+</nav>
+
+<h1>Senin Cilt Rutinin</h1>
+
+<div id="routine-container"></div>
+
+<a class="btn" href="products.html">Tüm Ürünleri Gör</a>
+
+<!-- 🔥 DATABASE -->
+<script src="/auth-context.js"></script>
+<script src="/auth-guard.js"></script>
+<script>
+(function () {
+if (!window.GLOWDERM_AUTH || !window.GLOWDERM_AUTH.loggedIn) {
+  return;
+}
+
+const labels = ["TEMIZLEYICI", "TONIK", "SERUM", "NEMLENDIRICI", "SPF"];
+const container = document.getElementById("routine-container");
+
+function showQuizRequired() {
+    document.body.innerHTML = `
+    <div class="lock-screen">
+        <div class="lock-card">
+            <div class="lock-icon">!</div>
+            <h1>Rutin Kilitli</h1>
+            <p>Rutininizi görmek için önce quizi tamamlayın.</p>
+            <a href="quiz.html" class="lock-btn">Cilt Analizine Başla</a>
+        </div>
+    </div>
+
+    <style>
+        body {
+            margin:0;
+            font-family:Montserrat, sans-serif;
+            background:url('rutin.jpg') center/cover no-repeat;
+            min-height:100vh;
+            min-height:100svh;
+        }
+        .lock-screen {
+            min-height:100vh;
+            min-height:100svh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:24px;
+            background:rgba(0,0,0,0.6);
+            backdrop-filter:blur(8px);
+        }
+        .lock-card {
+            text-align:center;
+            width:min(100%,360px);
+            padding:36px 24px;
+            border-radius:20px;
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.2);
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+            color:#fff;
+            max-width:320px;
+        }
+        .lock-icon { font-size:50px; margin-bottom:10px; }
+        .lock-card h1 { margin:10px 0; font-size:24px; }
+        .lock-card p { font-size:14px; line-height:1.5; opacity:0.85; }
+        .lock-btn {
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 20px;
+            background:linear-gradient(135deg,#f7e7b0,#d7b35b);
+            color:#000;
+            text-decoration:none;
+            border-radius:999px;
+            font-weight:600;
+        }
+        @media (max-width:380px) {
+            .lock-card { padding:30px 18px; }
+            .lock-card h1 { font-size:22px; }
+            .lock-btn { width:100%; }
+        }
+    </style>
+    `;
+}
+
+function showError() {
+    container.innerHTML = '<p class="empty-routine">Rutin bilgisi alınamadı. Lütfen daha sonra tekrar deneyin.</p>';
+}
+
+function renderRoutine(routine) {
+    if (!Array.isArray(routine) || routine.length === 0) {
+        showQuizRequired();
+        return;
+    }
+
+    container.innerHTML = "";
+    routine.forEach((item, index) => {
+        container.innerHTML += `
+        <div class="card">
+            <img src="${item.img}" alt="${item.name}">
+            <h3>${labels[index]}</h3>
+            <p>${item.brand} - ${item.name}</p>
+            <small>${item.desc}</small>
+        </div>
+        `;
+    });
+}
+
+fetch(window.GLOWDERM_AUTH.routineApi || "/api/routine/me/", {
+    method: "GET",
+    credentials: "same-origin",
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+})
+    .then(function (res) {
+        if (res.status === 404) {
+            showQuizRequired();
+            return null;
+        }
+        if (!res.ok) {
+            throw new Error("Routine API failed");
+        }
+        return res.json();
+    })
+    .then(function (data) {
+        if (!data) return;
+        renderRoutine(data.routine);
+    })
+    .catch(showError);
+
+})();
+
+</script>
+</body>
+</html>

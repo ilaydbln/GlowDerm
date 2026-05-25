@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayıt Ol · GlowDerm</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/index.html"><img src="/logo.png" alt="GlowDerm logo"></a>
+    </div>
+    <ul class="menu">
+      <li><a href="/index.html">Ana Sayfa</a></li>
+    </ul>
+  </nav>
+
+  <section class="auth-card-wrap">
+    <div class="auth-card">
+      <h1>Kayıt Ol</h1>
+      <p class="auth-lead">Ücretsiz hesap oluşturun; quiz, favoriler ve yorumlar için giriş gerekir.</p>
+
+      {% if form.non_field_errors %}
+        <div class="auth-errors">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <form method="post" class="auth-form">
+        {% csrf_token %}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+
+        <label for="id_username">Kullanıcı adı</label>
+        {{ form.username }}
+        {% if form.username.errors %}<p class="field-error">{{ form.username.errors.0 }}</p>{% endif %}
+
+        <label for="id_password1">Şifre</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}<p class="field-error">{{ form.password1.errors.0 }}</p>{% endif %}
+
+        <label for="id_password2">Şifre (tekrar)</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}<p class="field-error">{{ form.password2.errors.0 }}</p>{% endif %}
+
+        <button type="submit" class="btn-shop auth-submit">Kayıt Ol</button>
+      </form>
+
+      <p class="auth-switch">
+        Zaten kayıtlı mısınız?
+        <a href="{% url 'accounts:login' %}{% if next %}?next={{ next|urlencode }}{% endif %}">Giriş yapın</a>
+      </p>
+    </div>
+  </section>
+</body>
+</html>

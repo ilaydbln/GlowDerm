@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favoriler</title>
+  <link rel="stylesheet" href="product.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="GlowDerm logo">
+    </div>
+
+    <ul class="menu">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="rutin.html">Rutin</a></li>
+      <li><a href="favoriler.html">Favoriler</a></li>
+      <li><a href="products.html">Urunler</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero small-hero">
+    <div class="hero-content"></div>
+  </section>
+
+  <div id="products"></div>
+
+  <script src="/auth-context.js"></script>
+  <script src="/auth-guard.js"></script>
+  <script>
+  (function () {
+    if (!window.GLOWDERM_AUTH || !window.GLOWDERM_AUTH.loggedIn) {
+      return;
+    }
+    const container = document.getElementById("products");
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    window.removeFavorite = function (index) {
+      const current = JSON.parse(localStorage.getItem("favorites")) || [];
+      current.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(current));
+      location.reload();
+    };
+
+    if (favorites.length === 0) {
+      container.innerHTML = `
+        <div class="card">
+          <h4>Favoriler bos</h4>
+          <p>Henuz favori urun eklemedin.</p>
+          <small>Urunler sayfasindan kalbe tiklayarak ekleyebilirsin.</small>
+        </div>
+      `;
+    } else {
+      favorites.forEach((item, index) => {
+        container.innerHTML += `
+          <div class="card">
+            <img src="${item.img}" alt="${item.name}">
+            <h4>${item.brand}</h4>
+            <p>${item.name}</p>
+            <small>${item.desc}</small>
+            <span class="heart active" onclick="removeFavorite(${index})">♥</span>
+          </div>
+        `;
+      });
+    }
+
+  })();
+  </script>
+</body>
+</html>

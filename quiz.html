@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>GlowDerm | Cilt Analizi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="quiz-style.css">
+</head>
+<body class="quiz-body">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="GlowDerm logo">
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="rutin.html">Rutin</a></li>
+            <li><a href="favoriler.html">Favoriler</a></li>
+            <li><a href="products.html">Ürünler</a></li>
+        </ul>
+    </nav>
+
+    <div class="quiz-page">
+        <div class="quiz-container">
+            <div class="progress-wrapper">
+                <div id="progress-bar"></div>
+            </div>
+
+            <div id="question-box">
+                <h1 id="question-text">Yükleniyor...</h1>
+                <div id="options-container"></div>
+                <button id="back-btn" type="button" class="back-btn">Önceki Soru</button>
+            </div>
+        </div>
+    </div>
+    <script src="/auth-context.js"></script>
+    <script src="/auth-guard.js"></script>
+    <script src="products.js"></script>
+    <script src="routine-engine.js"></script>
+    <script src="quiz-script.js"></script>
+</body>
+</html>

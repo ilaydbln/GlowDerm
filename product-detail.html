@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ürün Detayı</title>
+  <link rel="stylesheet" href="product.css">
+  <style>
+    body.page-product-detail {
+      background-image: url("img/detail-bg.png") !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-attachment: fixed !important;
+    }
+  </style>
+</head>
+<body class="page-product-detail">
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="logo.png" alt="GlowDerm logo">
+  </div>
+  <ul class="menu">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="rutin.html">Rutin</a></li>
+    <li><a href="favoriler.html">Favoriler</a></li>
+    <li><a href="products.html">Ürünler</a></li>
+  </ul>
+</nav>
+
+<section class="hero small-hero">
+  <div class="hero-content"></div>
+</section>
+
+<div id="product-detail-root" style="position:relative;z-index:11;"></div>
+
+<script src="/auth-context.js"></script>
+<script src="/auth-guard.js"></script>
+<script src="products.js"></script>
+<script src="product-detail.js"></script>
+</body>
+</html>

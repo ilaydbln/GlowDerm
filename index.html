@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GlowDerm</title> 
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt=" GlowDerm logo"> 
+            </div> 
+            <ul class="menu">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="rutin.html">Rutin</a></li>
+                <li><a href="favoriler.html">Favoriler</a></li>
+                <li><a href="products.html">Ürünler</a></li>
+            </ul>
+        </nav>  
+        <section class="hero">
+            <div class="hero-content">
+            <h1>Cildinizin Benzersiz İmzasına Özel Bir Bakım Deneyimi</h1>
+            <p> Cilt tipinizi analiz eden akıllı quiz sistemimizle size en uygun ürünleri ve bakım adımlarını belirleyelim.</p>
+
+            <div id="hero-guest" class="hero-auth">
+              <p class="hero-auth-hint">Quiz, favoriler ve yorumlar için hesabınızla giriş yapın.</p>
+              <div class="hero-auth-buttons">
+                <button type="button" data-glowderm-open-register class="btn-shop">Kayıt Ol</button>
+                <button type="button" data-glowderm-open-login class="btn-shop btn-outline">Giriş Yap</button>
+              </div>
+            </div>
+
+            <div id="hero-member" class="hero-auth" style="display:none;">
+              <button type="button" onclick="goQuiz()" class="btn-shop">Quiz'e Başla</button>
+            </div>
+           </div>
+        </section>
+        <script src="/auth-context.js"></script>
+        <script src="/auth-guard.js"></script>
+        <script src="script.js"></script>
+        <script>
+function goQuiz() {
+    if (window.glowdermRequireLogin && !window.glowdermRequireLogin("Quiz için giriş yapın.", "/quiz.html")) {
+      return;
+    }
+    window.location.href = "quiz.html";
+}
+</script>
+    </body>
+</html>

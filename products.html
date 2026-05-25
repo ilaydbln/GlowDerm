@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tüm Ürünler</title>
+  <link rel="stylesheet" href="product.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="logo.png" alt="GlowDerm logo">
+  </div>
+
+  <ul class="menu">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="rutin.html">Rutin</a></li>
+    <li><a href="favoriler.html">Favoriler</a></li>
+    <li><a href="products.html">Ürünler</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero small-hero">
+  <div class="hero-content"></div>
+</section>
+
+<!-- ÜRÜNLER -->
+<p style="position:relative;z-index:11;max-width:720px;margin:32px auto 8px;padding:0 24px;box-sizing:border-box;text-align:center;font-size:14px;line-height:1.5;color:rgba(0,0,0,0.7);">Ürün detayını görmek için ürün üzerine tıklayınız.</p>
+<div id="products"></div>
+
+<!-- PRODUCTS DATABASE -->
+<script src="/auth-context.js"></script>
+<script src="/auth-guard.js"></script>
+<script src="products.js"></script>
+
+<script>
+const allProducts = getAllProductsFlat();
+const container = document.getElementById("products");
+
+// FAVORİ EKLE / ÇIKAR
+function toggleFavorite(product, el) {
+  if (window.glowdermRequireLogin && !window.glowdermRequireLogin("Favorilere eklemek için giriş yapın.", window.location.pathname)) {
+    return;
+  }
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  const index = favorites.findIndex(p => p.name === product.name);
+
+  if (index > -1) {
+    favorites.splice(index, 1);
+    el.classList.remove("active");
+    el.innerHTML = "♡";
+  } else {
+    favorites.push(product);
+    el.classList.add("active");
+    el.innerHTML = "♥";
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+// ÜRÜNLERİ ÇİZ — tam kart tıklanabilir (şeffaf link katmanı); kalp üstte
+allProducts.forEach(function (item, index) {
+  var pid = getProductStorageId(item);
+  var stats = getAverageRatingStats(pid);
+  var starsTxt = formatStarsVisual(stats.avg);
+
+  var card = document.createElement("div");
+  card.className = "card";
+
+  var img = document.createElement("img");
+  img.src = item.img;
+  img.alt = item.name;
+
+  var h4 = document.createElement("h4");
+  h4.textContent = item.brand;
+
+  var pEl = document.createElement("p");
+  pEl.textContent = item.name;
+
+  var small = document.createElement("small");
+  small.textContent = item.desc;
+
+  var rowStars = document.createElement("div");
+  rowStars.style.cssText =
+    "margin-top:8px;font-size:12px;color:#b38b2d;letter-spacing:3px;";
+  rowStars.textContent = starsTxt;
+
+  var rowStats = document.createElement("div");
+  rowStats.style.cssText =
+    "margin-top:2px;font-size:11px;color:rgba(0,0,0,0.55);";
+  rowStats.textContent =
+    stats.avg + " / 5 · " + stats.count + " değerlendirme";
+
+  card.appendChild(img);
+  card.appendChild(h4);
+  card.appendChild(pEl);
+  card.appendChild(small);
+  card.appendChild(rowStars);
+  card.appendChild(rowStats);
+
+  var stretch = document.createElement("a");
+  stretch.href = "product-detail.html?i=" + String(index);
+  stretch.style.cssText =
+    "position:absolute;left:0;top:0;right:0;bottom:0;z-index:1;border-radius:16px;";
+  stretch.setAttribute("aria-label", item.name + " ürün detayı");
+  stretch.setAttribute("title", item.name);
+  card.appendChild(stretch);
+
+  var heart = document.createElement("span");
+  heart.className = "heart";
+  heart.textContent = "♡";
+  heart.style.zIndex = "2";
+  heart.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(item, heart);
+  });
+
+  card.appendChild(heart);
+  container.appendChild(card);
+});
+
+// SAYFA AÇILINCA FAVORİLERİ İŞARETLE
+const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+document.querySelectorAll(".heart").forEach((heart, i) => {
+  const product = allProducts[i];
+
+  if (favorites.some(f => f.name === product.name)) {
+    heart.classList.add("active");
+    heart.innerHTML = "♥";
+  }
+});
+</script>
+
+</body>
+</html>

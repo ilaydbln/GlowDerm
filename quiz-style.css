@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sayfa Genel Arka Planı */
+/* 1. Arka Planı Ferah Tutalım (Cam Efekti) */
+body.quiz-body {
+    /* Arka plan görselini koruyoruz ama karartmayı overlay ile yapıyoruz */
+    background: url('arkaplan.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    color: #ffffff; /* Varsayılan metin rengi beyaz */
+    overflow-x: hidden;
+}
+
+.quiz-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 130px 20px 40px;
+}
+
+/* 2.DIŞ KUTUYU (Container) KALDIRIYORUZ */
+.quiz-container {
+    /* Eski cam efektini ve sınırları sildik */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+     
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    padding: 0;
+}
+
+#options-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 3. SORU METNİ VE STİLİ (Nourish'teki Lüks Font) */
+#question-text {
+    /* Nourish başlığındaki o serif fontu (Playfair veya Cormorant) kullanıyoruz */
+    font-family: 'Playfair Display', serif; /* Eğer Playfair Display'i index'e eklediysen süper, yoksa Cormorant Garamond kullan */
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #ffffff; /* Tam beyaz */
+    margin-bottom: 34px;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.5); /* Okunabilirlik için gölge */
+}
+
+/* 4. ŞEFFAF OVAL BUTONLAR VE BEYAZ YAZI */
+.option-btn {
+    display: block;
+    width: min(100%, 560px);
+    padding: 22px 30px; /* Daha tok ve premium */
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* ŞEFFAFLIK VE ÇERÇEVE */
+    background-color: transparent !important; /* İçi boş, şeffaf */
+    border: 1.5px solid rgba(255, 255, 255, 0.4); /* Çok hafif beyaz çerçeve */
+    border-radius: 50px; /* Tam oval */
+    
+    /* YAZI VE FONT */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /* Daha minimalist ve zarif */
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    color: #ffffff !important; /* Tam beyaz yazı */
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* BUTONLARIN ÜZERİNE GELİNCE (HOVER) */
+.option-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Hafif aydınlanma */
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+}
+
+/* 5. İLERLEME ÇUBUĞU */
+.progress-wrapper {
+    width: 100%; 
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    transition: width 0.4s ease;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.back-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* index.html ile aynı navbar stili */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.logo img {
+  width: 100px;
+  height: 150px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  margin-top: -20px;
+  transition: all 0.3s ease;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.menu li a:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .quiz-page {
+        padding-top: 110px;
+    }
+
+    #question-text {
+        font-size: 30px;
+        margin-bottom: 24px;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .menu {
+        display: none;
+    }
+}

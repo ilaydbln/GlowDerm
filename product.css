@@ -1,0 +1,300 @@
+/* =========================
+   🌟 GLOBAL (WHITE PREMIUM THEME)
+========================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #111;
+}
+
+/* Genel Ayarlar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  
+  background-image:url('product.jpg') !important;
+  background-size: cover;
+  background-position:right center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin:0;
+  padding:0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 🔝 NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 30px 60px; 
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+ 
+.logo img {
+  /* Enini makul bir seviyeye çekiyoruz */
+  width: 100px; 
+  
+  /* Boyunu belirgin şekilde büyütüyoruz */
+  height: 150px; 
+  
+  /* Görselin bozulmasını (basık durmasını) önlemek için mutlaka kalsın */
+  object-fit: contain; 
+  
+  /* Arka planla kaynaşması için (beyazlığı gizler) */
+  mix-blend-mode: multiply; 
+  
+  /* Biraz daha yukarı çekmek istersen */
+  margin-top: -20px; 
+  
+  transition: all 0.3s ease;
+}
+ 
+/* Navbardaki logo kapsayıcısını da buna göre daraltalım */
+.logo {
+  display: flex;
+  align-items: center;
+   gap: 10px;
+  width: auto; /* Genişliği içeriğe göre ayarla */
+}
+.logo span {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  /* Şeffaf Dikdörtgen Stil */
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1); /* Hafif beyaz şeffaflık */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* İnce kenarlık */
+  backdrop-filter: blur(8px); /* Cam efekti */
+  border-radius: 4px; /* Keskin ama zarif köşeler */
+  
+  transition: all 0.3s ease;
+}
+  
+.menu li a:hover {
+  opacity: 0.7;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+/* =========================
+   🌟 HERO (PRODUCT PAGE)
+========================= */
+.hero.small-hero {
+  text-align: center;
+  padding: 80px 20px 40px 20px;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+.hero-content p {
+  color: rgba(0,0,0,0.6);
+  font-size: 15px;
+}
+
+/* =========================
+   🌟 BACK BUTTON
+========================= */
+.btn {
+  display: inline-block;
+  margin: 10px 0 30px 40px;
+
+  padding: 10px 22px;
+
+  border-radius: 50px;
+
+  background: linear-gradient(135deg, #d4af37, #f5e6a8);
+  color: #111;
+
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(212,175,55,0.25);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(212,175,55,0.35);
+}
+
+/* =========================
+   🌟 PRODUCTS GRID
+========================= */
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+
+  padding: 40px 60px;
+}
+
+/* =========================
+   🌟 PRODUCT CARD (LUXURY STYLE)
+========================= */
+.card {
+  background: #fff;
+
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+
+  padding: 18px;
+  text-align: center;
+
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* GOLD LIGHT EFFECT */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+
+  background: radial-gradient(circle, rgba(212,175,55,0.15), transparent 60%);
+
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* HOVER LIFT */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(212,175,55,0.4);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* IMAGE */
+.card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+
+  margin-bottom: 12px;
+
+  transition: 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+/* BRAND */
+.card h4 {
+  font-size: 14px;
+  color: #b38b2d; /* gold accent */
+  margin: 5px 0;
+  letter-spacing: 0.5px;
+}
+
+/* NAME */
+.card p {
+  font-size: 13px;
+  margin: 0;
+  color: #111;
+} 
+
+/* DESCRIPTION */
+.card small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.55);
+}
+
+.heart {
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  color: #9a9a9a;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.heart:hover {
+  transform: scale(1.1);
+}
+
+.heart.active {
+  color: #e4002b;
+}
+
+/* =========================
+   🌟 RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  #products {
+    padding: 20px;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+  .card {
+    position: relative;
+  }
+} 
